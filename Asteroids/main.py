@@ -24,6 +24,7 @@ def main():
         pygame.Surface.fill(screen, (0, 0, 0)) # fill screen black
 
         player.draw(screen) # draw player
+        player.update(dt)
 
         pygame.display.flip()
         fpsclock.tick(60)
