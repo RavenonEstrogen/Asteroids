@@ -4,6 +4,10 @@ from constants import *
 # allows to use constants from the file
 from player import Player
 # allows to use Player class
+from asteroid import Asteroid
+# allows to use Asteroids class
+from asteroidfield import AsteroidField
+#
 
 def main():
     pygame.init()
@@ -11,8 +15,12 @@ def main():
 
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
     Player.containers = (updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = (updatable)
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, PLAYER_RADIUS)
+    asteroidfield = AsteroidField()
 
     fpsclock = pygame.time.Clock()
     dt = 0
@@ -24,7 +32,7 @@ def main():
         pygame.Surface.fill(screen, (0, 0, 0)) # fill screen black
 
         for draws in drawable:
-            draws.draw(screen) # draw player
+            draws.draw(screen) # draw player and asteroids
         updatable.update(dt)
 
         pygame.display.flip()
